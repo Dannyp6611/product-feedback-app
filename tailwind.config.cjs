@@ -9,6 +9,9 @@ module.exports = {
         colorPurple: ' #ad1fea',
       },
     },
+    container: {
+      center: true,
+    },
   },
   plugins: [],
 };

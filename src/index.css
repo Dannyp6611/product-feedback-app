@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply bg-whiteSecondary;
+}
+
 .btn-primary {
   @apply font-bold text-white bg-colorPurple rounded-md p-4 text-base;
+}
+
+.nav-card {
+  @apply md:flex-1 md:rounded-lg p-4;
 }

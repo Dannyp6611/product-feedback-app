@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 // import pages
-import { Login, SignUp } from './pages';
+import { Login, SignUp, Home } from './pages';
 
 import { useUserContext } from './context/useUserContext';
 
@@ -14,7 +14,7 @@ function App() {
     <Routes>
       <Route
         path="/"
-        element={<>{user ? <p>Home</p> : <Navigate to="/login" />}</>}
+        element={<>{user ? <Home /> : <Navigate to="/login" />}</>}
       />
       <Route
         path="/login"
