@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Navbar, CategoriesList, RoadmapList } from '../components';
+import { Navbar, CategoriesList, RoadmapList, SortBar } from '../components';
+import SuggestionsResults from '../components/SuggestionsResults';
 
 const Home = () => {
   return (
@@ -9,9 +10,11 @@ const Home = () => {
         <Navbar />
         <CategoriesList />
         <RoadmapList />
+        {/* TODO: Once categories list + roadmap list goes from hidden to visible display the sort bar in the results section */}
+        <SortBar />
       </div>
       <div className="xl:flex-1">
-        <h1>Results</h1>
+        <SuggestionsResults />
       </div>
     </div>
   );

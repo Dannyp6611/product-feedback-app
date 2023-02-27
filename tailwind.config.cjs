@@ -7,6 +7,7 @@ module.exports = {
         whiteSecondary: '#f2f4ff',
         grayPrimary: '#3a4374',
         colorPurple: ' #ad1fea',
+        colorBluePrimary: '#4661e6',
       },
     },
     container: {

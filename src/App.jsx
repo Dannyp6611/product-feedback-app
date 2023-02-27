@@ -1,12 +1,14 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 // import pages
-import { Login, SignUp, Home } from './pages';
+import { Login, SignUp, Home, AddFeedback } from './pages';
 
 import { useUserContext } from './context/useUserContext';
 
 function App() {
   const { user, authIsReady } = useUserContext();
+
+  console.log(user);
 
   if (!authIsReady) return null;
 
@@ -23,6 +25,10 @@ function App() {
       <Route
         path="/register"
         element={<>{user ? <Navigate to="/" /> : <SignUp />}</>}
+      />
+      <Route
+        path="/add-feedback"
+        element={<>{user ? <AddFeedback /> : <Navigate to="/login" />}</>}
       />
     </Routes>
   );
