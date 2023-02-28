@@ -11,8 +11,12 @@ export const useDocument = (collection, id) => {
 
     const unsubscribe = ref.onSnapshot(
       (document) => {
-        setDocument({ ...document.data(), id: document.id });
-        setError(null);
+        if (document.data()) {
+          setDocument({ ...document.data(), id: document.id });
+          setError(null);
+        } else {
+          setError("Document doesn't exist");
+        }
       },
       (error) => {
         console.log(error.message);

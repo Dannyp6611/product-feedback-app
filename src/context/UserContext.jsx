@@ -18,6 +18,12 @@ const userReducer = (state, action) => {
         ...state,
         authIsReady: true,
       };
+    case 'LOGOUT_USER':
+      return {
+        ...state,
+        user: null,
+        authIsReady: true,
+      };
     default:
       return state;
   }

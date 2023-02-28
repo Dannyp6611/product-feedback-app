@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-whiteSecondary;
+  @apply bg-whiteSecondary p-4;
 }
 
 .btn-primary {
