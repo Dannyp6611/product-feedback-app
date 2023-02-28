@@ -10,6 +10,10 @@ body {
   @apply font-bold text-white bg-colorPurple rounded-md p-4 text-base;
 }
 
+.btn-secondary {
+  @apply font-bold text-white bg-colorBluePrimary rounded-md p-4 text-base;
+}
+
 .nav-card {
   @apply md:flex-1 md:rounded-lg p-4;
 }

@@ -1,9 +1,28 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const SuggestionItem = ({ category, detail, title, upvotes, comments, id }) => {
+const SuggestionItem = ({
+  category,
+  detail,
+  title,
+  upvotes,
+  comments,
+  id,
+  clickable = false,
+}) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    if (clickable) {
+      navigate(`/suggestion/${id}`);
+    }
+  };
+
   return (
-    <Link to={`/suggestion/${id}`} className="bg-white rounded-md p-4 block">
+    <button
+      onClick={handleClick}
+      className="bg-white rounded-md p-4 block w-full"
+    >
       <h2 className="text-lg text-grayPrimary font-bold">{title}</h2>
       <p className="text-base text-gray-500 mb-4">{detail}</p>
 
@@ -13,13 +32,13 @@ const SuggestionItem = ({ category, detail, title, upvotes, comments, id }) => {
       </span>
 
       <div className="flex justify-between items-center mt-6">
-        <button className="bg-whiteSecondary p-2 rounded-md font-semibold flex items-center gap-x-2">
+        <p className="bg-whiteSecondary p-2 rounded-md font-semibold flex items-center gap-x-2">
           <span className="text-colorBluePrimary">^</span>
-          <p className="text-grayPrimary">5</p>
-        </button>
-        <span className=" text-grayPrimary font-bold">{comments?.length}</span>
+          <span className="text-grayPrimary">5</span>
+        </p>
+        <p className=" text-grayPrimary font-bold">{comments?.length}</p>
       </div>
-    </Link>
+    </button>
   );
 };
 

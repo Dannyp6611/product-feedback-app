@@ -4,17 +4,20 @@ import Select from 'react-select';
 
 import { CATEGORIES } from '../constants/categories';
 
+import { useUserContext } from '../context/useUserContext';
+
 // hooks
 import useFirestore from '../hooks/useFirestore';
 
 const AddFeedback = () => {
   const navigate = useNavigate();
+  const { user } = useUserContext();
 
   const [feedbackTitle, setFeedbackTitle] = useState('');
   const [category, setCategory] = useState('');
   const [feedbackDetail, setFeedbackDetail] = useState('');
 
-  const { addFeedback } = useFirestore('suggestions');
+  const { addDocument, response } = useFirestore('suggestions');
 
   const categoryOptions = CATEGORIES.map((category) => {
     return {
@@ -35,10 +38,13 @@ const AddFeedback = () => {
       detail: feedbackDetail,
       comments: [],
       upvotes: 0,
+      userId: user.uid,
     };
 
-    await addFeedback(feedbackData);
-    navigate('/');
+    await addDocument(feedbackData);
+    if (!response.error) {
+      navigate('/');
+    }
   };
 
   return (

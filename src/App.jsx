@@ -4,6 +4,7 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import { Login, SignUp, Home, AddFeedback } from './pages';
 
 import { useUserContext } from './context/useUserContext';
+import SuggestionDetail from './pages/SuggestionDetail';
 
 function App() {
   const { user, authIsReady } = useUserContext();
@@ -30,6 +31,7 @@ function App() {
         path="/add-feedback"
         element={<>{user ? <AddFeedback /> : <Navigate to="/login" />}</>}
       />
+      <Route path="/suggestion/:id" element={<SuggestionDetail />} />
     </Routes>
   );
 }

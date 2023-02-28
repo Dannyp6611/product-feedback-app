@@ -1,19 +1,80 @@
+import { useEffect, useReducer, useState } from 'react';
 import { projectFirestore } from '../firebase/config';
 
-import { useUserContext } from '../context/useUserContext';
+let initialState = {
+  document: null,
+  isPending: false,
+  error: null,
+  success: null,
+};
+
+const firestoreReducer = (state, action) => {
+  switch (action.type) {
+    case 'IS_PENDING':
+      return {
+        isPending: true,
+        document: null,
+        success: false,
+        error: null,
+      };
+    case 'ADDED_DOCUMENT':
+      return {
+        isPending: false,
+        document: action.payload,
+        success: true,
+        error: null,
+      };
+    case 'DELETED_DOCUMENT':
+      return {
+        isPending: false,
+        document: null,
+        success: true,
+        error: null,
+      };
+    case 'ERROR':
+      return {
+        isPending: false,
+        document: null,
+        success: false,
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
 
 const useFirestore = (collection) => {
-  const { user } = useUserContext();
+  const [response, dispatch] = useReducer(firestoreReducer, initialState);
+  const [isCancelled, setIsCancelled] = useState(false);
 
-  const addFeedback = async (feedbackData) => {
-    const response = await projectFirestore.collection(collection).add({
-      ...feedbackData,
-      userId: user.uid,
-    });
+  const collectionRef = projectFirestore.collection(collection);
+
+  const addDocument = async (docData) => {
+    dispatch({ type: 'IS_PENDING' });
+
+    try {
+      const addedDocument = await collectionRef.add({
+        ...docData,
+      });
+      if (!isCancelled) {
+        dispatch({ type: 'ADDED_DOCUMENT', payload: addedDocument });
+      }
+    } catch (error) {
+      if (!isCancelled) {
+        dispatch({ type: 'ERROR', payload: error.message });
+      }
+    }
+
     console.log(response);
   };
 
-  return { addFeedback };
+  useEffect(() => {
+    return () => {
+      setIsCancelled(true);
+    };
+  }, []);
+
+  return { response, addDocument };
 };
 
 export default useFirestore;

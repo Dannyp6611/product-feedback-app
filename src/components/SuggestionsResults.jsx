@@ -1,52 +1,21 @@
-import { useEffect, useState } from 'react';
-import { projectFirestore } from '../firebase/config';
-
 import React from 'react';
 import SuggestionItem from './SuggestionItem';
 import { Link } from 'react-router-dom';
 
+import useCollection from '../hooks/useCollection';
+
 const SuggestionsResults = () => {
-  const [suggestions, setSuggestions] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  console.log(suggestions);
-
-  useEffect(() => {
-    setIsLoading(true);
-    setError(false);
-
-    projectFirestore.collection('suggestions').onSnapshot(
-      (snapshot) => {
-        const suggestionsData = snapshot.docs.map((doc) => {
-          return {
-            id: doc.id,
-            ...doc.data(),
-          };
-        });
-        setSuggestions(suggestionsData);
-        setIsLoading(false);
-        setError(false);
-      },
-      (error) => {
-        setIsLoading(false);
-        setError(error.message);
-      }
-    );
-  }, []);
+  const { documents: suggestions, error } = useCollection('suggestions');
 
   return (
     <>
-      {isLoading && !error && (
-        <div className="h-72 flex items-center justify-center">Loading...</div>
-      )}
-      {!isLoading && error && (
+      {error && (
         <div className="h-72 flex items-center justify-center">{error}</div>
       )}
-      {!isLoading && suggestions.length > 0 ? (
+      {suggestions && suggestions.length > 0 ? (
         <div className="w-[90vw] mx-auto md:w-full md:mx-0 flex flex-col gap-y-4">
           {suggestions.map((suggestion) => (
-            <SuggestionItem {...suggestion} />
+            <SuggestionItem key={suggestion.id} {...suggestion} clickable />
           ))}
         </div>
       ) : (
