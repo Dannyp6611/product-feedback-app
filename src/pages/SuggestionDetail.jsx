@@ -39,7 +39,10 @@ const SuggestionDetail = () => {
       </div>
       <SuggestionItem {...suggestion} />
       {suggestion.comments && suggestion.comments.length > 0 && (
-        <SuggestionComments comments={suggestion.comments} />
+        <SuggestionComments
+          suggestion={suggestion}
+          comments={suggestion.comments}
+        />
       )}
 
       <CommentForm suggestion={suggestion} />

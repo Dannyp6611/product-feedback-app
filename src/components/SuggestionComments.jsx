@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-
 import { useUserContext } from '../context/useUserContext';
 
-const SuggestionComments = ({ comments }) => {
+import useFirestore from '../hooks/useFirestore';
+
+const SuggestionComments = ({ suggestion, comments }) => {
   const { user } = useUserContext();
+
+  const { updateDocument, response } = useFirestore('suggestions');
 
   const [newReply, setNewReply] = useState('');
   const [toggling, setToggling] = useState({
@@ -15,7 +18,7 @@ const SuggestionComments = ({ comments }) => {
     setToggling({ commentID: id, isToggling: true });
   };
 
-  const handleSubmit = (e, commentData) => {
+  const handleSubmit = async (e, commentData) => {
     e.preventDefault();
 
     // create new reply
@@ -28,7 +31,21 @@ const SuggestionComments = ({ comments }) => {
       },
     };
 
-    console.log(replyToAdd);
+    await updateDocument(suggestion.id, {
+      comments: suggestion.comments.map((comment) => {
+        if (comment.id === commentData.id) {
+          return {
+            ...comment,
+            replies: [...comment.replies, replyToAdd],
+          };
+        }
+        return comment;
+      }),
+    });
+
+    if (!response.error) {
+      console.log('reply added');
+    }
   };
 
   return (
