@@ -1,17 +1,27 @@
 import React from 'react';
 
 import { CATEGORIES } from '../constants/categories';
+import { uppercaseCategory } from '../helpers';
 
-const CategoriesList = () => {
+const CategoriesList = ({ currentFilter, changeFilter }) => {
+  const handleClick = (newFilter) => {
+    changeFilter(newFilter);
+  };
+
   return (
     <div className="nav-card bg-white hidden md:block">
       <ul className="flex flex-wrap gap-4">
         {CATEGORIES.map((category) => (
           <li
-            className="bg-whiteSecondary px-4 py-1 text-colorBluePrimary hover:bg-colorBluePrimary hover:text-white font-bold rounded-md cursor-pointer text-base"
+            className={`px-4 py-1  font-medium rounded-md cursor-pointer text-sm ${
+              currentFilter === category
+                ? 'bg-colorBluePrimary text-white'
+                : 'bg-whiteSecondary text-colorBluePrimary'
+            }`}
             key={category}
+            onClick={() => handleClick(category)}
           >
-            {category}
+            {uppercaseCategory(category)}
           </li>
         ))}
       </ul>

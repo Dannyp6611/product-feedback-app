@@ -37,7 +37,7 @@ const AddFeedback = () => {
       category,
       detail: feedbackDetail,
       comments: [],
-      upvotes: 0,
+      upvotes: { count: 0, userIds: [] },
       userId: user.uid,
     };
 

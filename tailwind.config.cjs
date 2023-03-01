@@ -9,6 +9,9 @@ module.exports = {
         colorPurple: ' #ad1fea',
         colorBluePrimary: '#4661e6',
       },
+      fontFamily: {
+        jost: ['Jost', 'sans-serif'],
+      },
     },
     container: {
       center: true,
