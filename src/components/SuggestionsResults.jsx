@@ -2,6 +2,9 @@ import React from 'react';
 import SuggestionItem from './SuggestionItem';
 import { Link } from 'react-router-dom';
 
+// images
+import illustrationEmpty from '../assets/illustration-empty.svg';
+
 const SuggestionsResults = ({ suggestions, error }) => {
   return (
     <>
@@ -15,8 +18,11 @@ const SuggestionsResults = ({ suggestions, error }) => {
           ))}
         </div>
       ) : (
-        <div className="h-full text-center flex justify-center items-center bg-white rounded-md">
-          <div className="max-w-[60%] text-center flex flex-col gap-y-4">
+        <div className="h-full min-h-[50vh] mx-4 md:mx-0 p-4 text-center flex justify-center items-center bg-white rounded-md shadow-md">
+          <div className="max-w-[60%] text-center flex flex-col items-center gap-y-4">
+            <div>
+              <img src={illustrationEmpty} width="auto" height="auto" />
+            </div>
             <h2 className="text-2xl text-grayPrimary font-bold">
               There is no feedback yet.
             </h2>

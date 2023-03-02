@@ -7,11 +7,11 @@ body {
 }
 
 .btn-primary {
-  @apply font-bold text-white bg-colorPurple rounded-lg p-4 text-sm md:text-base;
+  @apply font-bold text-white bg-colorPurple rounded-lg px-2 py-2 md:py-2 md:px-4 text-sm md:text-base;
 }
 
 .btn-secondary {
-  @apply font-bold text-white bg-colorBluePrimary rounded-lg p-4 text-sm md:text-base;
+  @apply font-bold text-white bg-colorBluePrimary rounded-lg px-2 py-2 md:py-2 md:px-4 text-sm md:text-base;
 }
 
 .nav-card {

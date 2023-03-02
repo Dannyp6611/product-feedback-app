@@ -12,6 +12,11 @@ module.exports = {
       fontFamily: {
         jost: ['Jost', 'sans-serif'],
       },
+      backgroundImage: {
+        'header-pattern-desktop': "url('/background-header-desktop.png')",
+        'header-pattern-tablet': "url('/background-header-tablet.png')",
+        'header-pattern-mobile': "url('/background-header-mobile.png')",
+      },
     },
     container: {
       center: true,

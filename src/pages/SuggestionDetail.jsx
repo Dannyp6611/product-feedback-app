@@ -6,6 +6,7 @@ import { useDocument } from '../hooks/useDocument';
 import SuggestionItem from '../components/SuggestionItem';
 import CommentForm from '../components/CommentForm';
 import SuggestionComments from '../components/SuggestionComments';
+import BackButton from '../components/BackButton';
 
 const SuggestionDetail = () => {
   const { id } = useParams();
@@ -33,7 +34,7 @@ const SuggestionDetail = () => {
   return (
     <div className="max-w-[330px] md:max-w-xl mx-auto p-4 flex flex-col gap-y-4">
       <div className="flex items-center justify-between">
-        <Link to="/">Go Back</Link>
+        <BackButton />
 
         <button className="btn-secondary">Edit Feedback</button>
       </div>

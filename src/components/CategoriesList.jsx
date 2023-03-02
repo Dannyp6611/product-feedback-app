@@ -3,9 +3,9 @@ import React from 'react';
 import { CATEGORIES } from '../constants/categories';
 import { uppercaseCategory } from '../helpers';
 
-const CategoriesList = ({ currentFilter, changeFilter }) => {
+const CategoriesList = ({ categoryFilter, changeCategoryFilter }) => {
   const handleClick = (newFilter) => {
-    changeFilter(newFilter);
+    changeCategoryFilter(newFilter);
   };
 
   return (
@@ -14,7 +14,7 @@ const CategoriesList = ({ currentFilter, changeFilter }) => {
         {CATEGORIES.map((category) => (
           <li
             className={`px-4 py-1  font-medium rounded-md cursor-pointer text-sm ${
-              currentFilter === category
+              categoryFilter === category
                 ? 'bg-colorBluePrimary text-white'
                 : 'bg-whiteSecondary text-colorBluePrimary'
             }`}

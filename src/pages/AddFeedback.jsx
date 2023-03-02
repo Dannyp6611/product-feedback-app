@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
+import BackButton from '../components/BackButton';
 
 import { CATEGORIES } from '../constants/categories';
 
@@ -48,11 +49,11 @@ const AddFeedback = () => {
   };
 
   return (
-    <div className="h-screen w-full flex items-center justify-center">
-      <div className="">
-        <button>Go Back</button>
+    <>
+      <div className="w-[380px] max-w-lg mx-auto mt-8">
+        <BackButton />
         <form
-          className="bg-white relative rounded-lg p-6 w-[450px]"
+          className="bg-white relative rounded-lg p-6 w-[450px] mt-4"
           onSubmit={handleSubmit}
         >
           <h1 className="text-2xl mb-4 text-grayPrimary font-bold">
@@ -115,7 +116,7 @@ const AddFeedback = () => {
           </button>
         </form>
       </div>
-    </div>
+    </>
   );
 };
 
