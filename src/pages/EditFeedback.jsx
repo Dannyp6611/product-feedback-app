@@ -74,10 +74,10 @@ const EditFeedback = () => {
 
   return (
     <>
-      <div className="w-[380px] max-w-lg mx-auto mt-8">
+      <div className="w-[90vw] max-w-md mx-auto mt-8">
         <BackButton />
         <form
-          className="bg-white relative rounded-lg p-6 w-[450px] mt-8"
+          className="bg-white relative rounded-lg p-6 w-full mt-8"
           onSubmit={handleSubmit}
         >
           <img src={EditFeedbackIcon} className="absolute -top-5 left-5" />

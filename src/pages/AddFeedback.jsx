@@ -58,10 +58,10 @@ const AddFeedback = () => {
 
   return (
     <>
-      <div className="w-[380px] max-w-lg mx-auto mt-8">
+      <div className="w-[80vw] max-w-md mx-auto mt-8">
         <BackButton />
         <form
-          className="bg-white relative rounded-lg p-6 w-[450px] mt-8"
+          className="bg-white relative rounded-lg p-6 w-full mt-8"
           onSubmit={handleSubmit}
         >
           <img src={AddFeedbackIcon} className="absolute -top-5 left-5" />
@@ -117,13 +117,21 @@ const AddFeedback = () => {
             />
           </div>
 
-          <button
-            className="btn-primary disabled:opacity-70 disabled:cursor-not-allowed"
-            type="submit"
-            disabled={!buttonIsValid}
-          >
-            Add Feedback
-          </button>
+          <div className="flex flex-col-reverse md:flex-row gap-4">
+            <button
+              className="btn-secondary md:ml-auto"
+              onClick={() => navigate('/')}
+            >
+              Cancel
+            </button>
+            <button
+              className="btn-primary disabled:opacity-70 disabled:cursor-not-allowed"
+              type="submit"
+              disabled={!buttonIsValid}
+            >
+              Add Feedback
+            </button>
+          </div>
         </form>
       </div>
     </>
