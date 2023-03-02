@@ -1,12 +1,8 @@
 import React from 'react';
 
-import { useUserContext } from '../context/useUserContext';
-
 import { BiMenuAltRight } from 'react-icons/bi';
 
-const Navbar = ({ textCenter = false }) => {
-  const { user } = useUserContext();
-
+const Navbar = ({ textCenter }) => {
   return (
     <nav
       className={`bg-header-pattern-mobile md:bg-header-pattern-tablet lg:bg-header-pattern-desktop bg-cover text-white flex md:items-end ${

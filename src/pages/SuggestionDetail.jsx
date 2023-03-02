@@ -36,7 +36,9 @@ const SuggestionDetail = () => {
       <div className="flex items-center justify-between">
         <BackButton />
 
-        <button className="btn-secondary">Edit Feedback</button>
+        <Link to={`/edit-feedback/${id}`} className="btn-secondary">
+          Edit Feedback
+        </Link>
       </div>
       <SuggestionItem {...suggestion} />
       {suggestion.comments && suggestion.comments.length > 0 && (

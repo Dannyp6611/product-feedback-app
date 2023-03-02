@@ -1,32 +1,40 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import Select from 'react-select';
-
-// components
 import BackButton from '../components/BackButton';
 
-// constants
 import { CATEGORIES } from '../constants/categories';
 
 import { useUserContext } from '../context/useUserContext';
 
+import EditFeedbackIcon from '../assets/icon-edit-feedback.svg';
+
 // hooks
 import useFirestore from '../hooks/useFirestore';
+import { useDocument } from '../hooks/useDocument';
 
-import AddFeedbackIcon from '../assets/icon-new-feedback.svg';
-
-const AddFeedback = () => {
+const EditFeedback = () => {
   const navigate = useNavigate();
   const { user } = useUserContext();
 
+  const { suggestionID } = useParams();
+
+  const { document } = useDocument('suggestions', suggestionID);
+
+  const { updateDocument, deleteDocument, response } =
+    useFirestore('suggestions');
+
   const [feedbackTitle, setFeedbackTitle] = useState('');
-  const [category, setCategory] = useState({
-    value: CATEGORIES[0],
-    label: CATEGORIES[0],
-  });
+  const [category, setCategory] = useState('');
   const [feedbackDetail, setFeedbackDetail] = useState('');
 
-  const { addDocument, response } = useFirestore('suggestions');
+  useEffect(() => {
+    if (document) {
+      setFeedbackTitle(document.title);
+      setCategory(document.category);
+      setFeedbackDetail(document.detail);
+    }
+  }, [document]);
 
   const categoryOptions = CATEGORIES.map((category) => {
     return {
@@ -36,25 +44,33 @@ const AddFeedback = () => {
   });
 
   const buttonIsValid =
-    feedbackTitle.trim() && category.value.trim() && feedbackDetail.trim();
+    feedbackTitle.trim() && category?.value?.trim() && feedbackDetail.trim();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const feedbackData = {
+    await updateDocument(suggestionID, {
+      ...document,
       title: feedbackTitle,
       category,
       detail: feedbackDetail,
-      comments: [],
-      upvotes: { count: 0, userIds: [] },
-      userId: user.uid,
-    };
-
-    await addDocument(feedbackData);
+    });
     if (!response.error) {
       navigate('/');
     }
   };
+
+  const handleDelete = async () => {
+    await deleteDocument(suggestionID);
+    if (!response.error) {
+      console.log('document deleted');
+      navigate('/');
+    }
+  };
+
+  if (!document) {
+    return <h1 className="text-center text-3xl text-gray-700">Loading...</h1>;
+  }
 
   return (
     <>
@@ -64,14 +80,14 @@ const AddFeedback = () => {
           className="bg-white relative rounded-lg p-6 w-[450px] mt-8"
           onSubmit={handleSubmit}
         >
-          <img src={AddFeedbackIcon} className="absolute -top-5 left-5" />
+          <img src={EditFeedbackIcon} className="absolute -top-5 left-5" />
           <h1 className="text-2xl mb-4 text-grayPrimary font-bold mt-8">
-            Create New Feedback
+            Editing '{document.title}'
           </h1>
           <div className="mb-6">
             <label htmlFor="title" className="mb-4 block">
               <h2 className="text-base text-grayPrimary font-bold">
-                Feedback Title
+                {document.title}
               </h2>
               <small className="text-gray-600">
                 Add a short, descriptive title
@@ -117,17 +133,28 @@ const AddFeedback = () => {
             />
           </div>
 
-          <button
-            className="btn-primary disabled:opacity-70 disabled:cursor-not-allowed"
-            type="submit"
-            disabled={!buttonIsValid}
-          >
-            Add Feedback
-          </button>
+          <div className="flex flex-col-reverse md:flex-row gap-4">
+            <button className="btn-accent" onClick={handleDelete}>
+              Delete
+            </button>
+            <button
+              className="btn-secondary md:ml-auto"
+              onClick={() => navigate('/')}
+            >
+              Cancel
+            </button>
+            <button
+              className="btn-primary disabled:opacity-70 disabled:cursor-not-allowed"
+              type="submit"
+              disabled={!buttonIsValid}
+            >
+              Save Changes
+            </button>
+          </div>
         </form>
       </div>
     </>
   );
 };
 
-export default AddFeedback;
+export default EditFeedback;

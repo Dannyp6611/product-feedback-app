@@ -75,7 +75,7 @@ const SuggestionItem = ({
 
         {/* tag */}
         <span className="bg-whiteSecondary text-colorBluePrimary py-1 px-3 rounded-md font-semibold text-sm">
-          {uppercaseCategory(category)}
+          {uppercaseCategory(category.value)}
         </span>
       </div>
 

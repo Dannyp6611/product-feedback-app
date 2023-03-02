@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { CATEGORIES } from '../constants/categories';
+
 import { uppercaseCategory } from '../helpers';
 
 const CategoriesList = ({ categoryFilter, changeCategoryFilter }) => {

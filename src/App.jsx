@@ -5,6 +5,7 @@ import { Login, SignUp, Home, AddFeedback } from './pages';
 
 import { useUserContext } from './context/useUserContext';
 import SuggestionDetail from './pages/SuggestionDetail';
+import EditFeedback from './pages/EditFeedback';
 
 function App() {
   const { user, authIsReady } = useUserContext();
@@ -32,6 +33,7 @@ function App() {
         element={<>{user ? <AddFeedback /> : <Navigate to="/login" />}</>}
       />
       <Route path="/suggestion/:id" element={<SuggestionDetail />} />
+      <Route path="/edit-feedback/:suggestionID" element={<EditFeedback />} />
     </Routes>
   );
 }
