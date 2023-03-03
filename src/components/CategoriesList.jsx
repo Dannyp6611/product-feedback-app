@@ -4,13 +4,13 @@ import { CATEGORIES } from '../constants/categories';
 
 import { uppercaseCategory } from '../helpers';
 
-const CategoriesList = ({ categoryFilter, changeCategoryFilter }) => {
+const CategoriesList = ({ categoryFilter, changeCategoryFilter, classes }) => {
   const handleClick = (newFilter) => {
     changeCategoryFilter(newFilter);
   };
 
   return (
-    <div className="nav-card bg-white hidden md:block">
+    <div className={`nav-card bg-white ${classes}`}>
       <ul className="flex flex-wrap gap-4">
         {CATEGORIES.map((category) => (
           <li

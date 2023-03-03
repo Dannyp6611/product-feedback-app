@@ -1,8 +1,9 @@
 import React from 'react';
 
 import { BiMenuAltRight } from 'react-icons/bi';
+import { AiOutlineClose } from 'react-icons/ai';
 
-const Navbar = ({ textCenter }) => {
+const Navbar = ({ textCenter, showMobileNav, handleShowMobileNav }) => {
   return (
     <nav
       className={`bg-header-pattern-mobile md:bg-header-pattern-tablet lg:bg-header-pattern-desktop bg-cover text-white flex md:items-end ${
@@ -14,8 +15,9 @@ const Navbar = ({ textCenter }) => {
         <p className="text-lg">Product Feedback</p>
       </header>
       {/* Mobile Menu Button */}
-      <button className="md:hidden">
-        <BiMenuAltRight size={30} />
+      <button onClick={handleShowMobileNav} className="md:hidden">
+        {!showMobileNav && <BiMenuAltRight size={30} />}
+        {showMobileNav && <AiOutlineClose size={30} />}
       </button>
     </nav>
   );

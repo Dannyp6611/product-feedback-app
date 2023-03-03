@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { Navbar, CategoriesList, RoadmapList, SortBar } from '../components';
+import MobileNav from '../components/MobileNav';
 import SuggestionsResults from '../components/SuggestionsResults';
 import useCollection from '../hooks/useCollection';
 
@@ -11,8 +12,12 @@ const Home = () => {
       ? localStorage.getItem('sortBy')
       : 'most upvotes'
   );
+  const [showMobileNav, setShowMobileNav] = useState(false);
 
-  const { documents, error } = useCollection('suggestions');
+  const { documents, error } = useCollection('suggestions', null, [
+    'createdAt',
+    'desc',
+  ]);
 
   const changeCategoryFilter = (newFilter) => {
     setCategoryFilter(newFilter);
@@ -60,13 +65,29 @@ const Home = () => {
     }
   }
 
+  // handle showNavbar
+  const handleShowMobileNav = () => {
+    setShowMobileNav((prevState) => !prevState);
+  };
+
+  console.log(showMobileNav);
+
   return (
     <div className="md:container md:p-12 xl:flex gap-x-4">
+      <MobileNav
+        showMobileNav={showMobileNav}
+        categoryFilter={categoryFilter}
+        changeCategoryFilter={changeCategoryFilter}
+      />
       <div className="md:w-full md:flex md:flex-row xl:flex-col gap-x-4 gap-y-6 md:h-[160px] xl:h-[70vh] xl:min-h-[500px] xl:w-[260px]">
-        <Navbar />
+        <Navbar
+          showMobileNav={showMobileNav}
+          handleShowMobileNav={handleShowMobileNav}
+        />
         <CategoriesList
           categoryFilter={categoryFilter}
           changeCategoryFilter={changeCategoryFilter}
+          classes="hidden md:block"
         />
         <RoadmapList />
         <SortBar

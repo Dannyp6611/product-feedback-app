@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import { useDocument } from '../hooks/useDocument';
@@ -8,12 +8,24 @@ import CommentForm from '../components/CommentForm';
 import SuggestionComments from '../components/SuggestionComments';
 import BackButton from '../components/BackButton';
 
+import { useUserContext } from '../context/useUserContext';
+
 const SuggestionDetail = () => {
   const { id } = useParams();
+  const [userId, setUserId] = useState(null);
+  const { user } = useUserContext();
+
+  const userCreatedSuggestion = userId === user.uid;
+
+  console.log(userCreatedSuggestion);
 
   const { document: suggestion, error } = useDocument('suggestions', id);
 
-  console.log(suggestion);
+  useEffect(() => {
+    if (suggestion) {
+      setUserId(suggestion.userId);
+    }
+  }, [suggestion]);
 
   if (error) {
     return (
@@ -36,9 +48,11 @@ const SuggestionDetail = () => {
       <div className="flex items-center justify-between">
         <BackButton />
 
-        <Link to={`/edit-feedback/${id}`} className="btn-secondary">
-          Edit Feedback
-        </Link>
+        {userCreatedSuggestion && (
+          <Link to={`/edit-feedback/${id}`} className="btn-secondary">
+            Edit Feedback
+          </Link>
+        )}
       </div>
       <SuggestionItem {...suggestion} />
       {suggestion.comments && suggestion.comments.length > 0 && (
