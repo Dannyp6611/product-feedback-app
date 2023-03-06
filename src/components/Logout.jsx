@@ -4,13 +4,17 @@ import useLogout from '../hooks/useLogout';
 
 import { useUserContext } from '../context/useUserContext';
 
-const RoadmapList = () => {
+const Logout = ({ showMobile }) => {
   const { user } = useUserContext();
 
   const { logoutUser } = useLogout();
 
   return (
-    <div className="nav-card bg-white hidden md:flex flex-col justify-between ">
+    <div
+      className={`nav-card bg-white flex-col justify-between md:flex ${
+        showMobile ? 'flex' : 'hidden'
+      }`}
+    >
       <div className="flex gap-x-2">
         <div className="w-[40px] h-[40px] rounded-full">
           <img
@@ -35,4 +39,4 @@ const RoadmapList = () => {
   );
 };
 
-export default RoadmapList;
+export default Logout;

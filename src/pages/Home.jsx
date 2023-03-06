@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Navbar, CategoriesList, RoadmapList, SortBar } from '../components';
+import { Navbar, CategoriesList, Logout, SortBar } from '../components';
 import MobileNav from '../components/MobileNav';
 import SuggestionsResults from '../components/SuggestionsResults';
 import useCollection from '../hooks/useCollection';
@@ -89,7 +89,7 @@ const Home = () => {
           changeCategoryFilter={changeCategoryFilter}
           classes="hidden md:block"
         />
-        <RoadmapList />
+        <Logout />
         <SortBar
           classes="md:hidden"
           sortedFilter={sortFilter}

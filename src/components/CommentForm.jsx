@@ -6,7 +6,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 const CommentForm = ({ suggestion }) => {
   const [newComment, setNewComment] = useState('');
-  const [charactersLeft, setCharactersLeft] = useState(250);
 
   const { updateDocument, response } = useFirestore('suggestions');
 
@@ -14,11 +13,12 @@ const CommentForm = ({ suggestion }) => {
 
   const handleChange = (e) => {
     setNewComment(e.target.value);
-    setCharactersLeft((prevCharacters) => prevCharacters - 1);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!newComment) return;
 
     const commentData = {
       id: uuidv4(),
@@ -49,7 +49,6 @@ const CommentForm = ({ suggestion }) => {
           placeholder="Type your comment here..."
         />
         <div className="flex items-center justify-between my-4">
-          <p>{charactersLeft} characters left</p>
           <button className="btn-primary">Post Comment</button>
         </div>
       </form>
