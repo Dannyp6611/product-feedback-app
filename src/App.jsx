@@ -32,8 +32,14 @@ function App() {
         path="/add-feedback"
         element={<>{user ? <AddFeedback /> : <Navigate to="/login" />}</>}
       />
-      <Route path="/suggestion/:id" element={<SuggestionDetail />} />
-      <Route path="/edit-feedback/:suggestionID" element={<EditFeedback />} />
+      <Route
+        path="/suggestion/:id"
+        element={user ? <SuggestionDetail /> : <Navigate to="/login" />}
+      />
+      <Route
+        path="/edit-feedback/:suggestionID"
+        element={user ? <EditFeedback /> : <Navigate to="/login" />}
+      />
     </Routes>
   );
 }
