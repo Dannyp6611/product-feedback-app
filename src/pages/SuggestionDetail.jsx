@@ -17,8 +17,6 @@ const SuggestionDetail = () => {
 
   const userCreatedSuggestion = userId === user.uid;
 
-  console.log(userCreatedSuggestion);
-
   const { document: suggestion, error } = useDocument('suggestions', id);
 
   useEffect(() => {
