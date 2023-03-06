@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import RepliesList from './RepliesList';
 
 const SingleComment = ({
   content,
@@ -7,13 +8,20 @@ const SingleComment = ({
   comment,
   newReply,
   setNewReply,
+  suggestionComments,
 }) => {
   const [toggling, setToggling] = useState({
     commentID: null,
     isToggling: false,
   });
 
-  console.log(toggling.commentID);
+  let replies = [];
+
+  suggestionComments.forEach((c) => {
+    if (comment.replies && comment.id === c.id) {
+      replies = comment.replies;
+    }
+  });
 
   const handleReplyToggle = (id) => {
     setToggling({ commentID: id, isToggling: true });
@@ -21,10 +29,7 @@ const SingleComment = ({
 
   return (
     <>
-      <div
-        key={content.id}
-        className={`md:flex gap-4 relative ${reply && 'ml-4'}`}
-      >
+      <div key={content.id} className={`md:flex gap-4 relative mb-6`}>
         <button
           onClick={() => handleReplyToggle(content.id)}
           className="text-colorBluePrimary hover:underline underline-offset-1 font-bold absolute right-0 text-sm"
@@ -44,13 +49,33 @@ const SingleComment = ({
             {content.user.username}
           </h4>
         </div>
-        <div className="">
+        <div>
           <h4 className="text-base text-grayPrimary font-bold hidden md:block">
             {content.user.username}
           </h4>
           <p className="text-gray-600">{content.content}</p>
         </div>
       </div>
+
+      {replies &&
+        replies.length > 0 &&
+        replies.map((reply) => (
+          <div
+            className="relative ml-8 pl-6 border-l flex flex-col"
+            key={reply.id}
+          >
+            <RepliesList
+              reply={reply}
+              newReply={newReply}
+              setNewReply={setNewReply}
+              handleReplyToggle={handleReplyToggle}
+              handleSubmit={handleSubmit}
+              key={reply.id}
+              toggling={toggling}
+            />
+          </div>
+        ))}
+
       {toggling.commentID === comment.id && toggling.isToggling && (
         <form
           onSubmit={(e) => handleSubmit(e, comment)}

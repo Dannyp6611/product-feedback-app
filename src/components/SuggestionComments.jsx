@@ -62,6 +62,7 @@ const SuggestionComments = ({ suggestion, comments }) => {
               comment={comment}
               newReply={newReply}
               setNewReply={setNewReply}
+              suggestionComments={suggestion?.comments}
             />
           </div>
         ))}
