@@ -70,8 +70,6 @@ const Home = () => {
     setShowMobileNav((prevState) => !prevState);
   };
 
-  console.log(showMobileNav);
-
   return (
     <div className="md:container md:p-12 xl:flex gap-x-4">
       <MobileNav

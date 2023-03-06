@@ -27,6 +27,14 @@ const SingleComment = ({
     setToggling({ commentID: id, isToggling: true });
   };
 
+  const cancelReplyToggle = () => {
+    setNewReply('');
+    setToggling({
+      commentID: null,
+      isToggling: false,
+    });
+  };
+
   return (
     <>
       <div key={content.id} className={`md:flex gap-4 relative mb-6`}>
@@ -72,6 +80,7 @@ const SingleComment = ({
               handleSubmit={handleSubmit}
               key={reply.id}
               toggling={toggling}
+              cancelReplyToggle={cancelReplyToggle}
             />
           </div>
         ))}
@@ -88,9 +97,11 @@ const SingleComment = ({
             className="block rounded-md bg-gray-200 p-2 outline-none focus:ring-2 focus:ring-offset-1 focus:ring-colorPurple h-14 overflow-hidden flex-1 text-sm"
             placeholder={`replying to @${comment.user.username}`}
           />
-          <div className="flex justify-between md:flex-col">
-            {/* <button className="btn-primary">Post Reply</button> */}
-            <button className="btn-primary" type="submit">
+          <div className="flex gap-x-2 md:gap-y-4 md:flex-col">
+            <button className="btn-accent flex-1" onClick={cancelReplyToggle}>
+              Cancel
+            </button>
+            <button className="btn-primary flex-1" type="submit">
               Post Reply
             </button>
           </div>

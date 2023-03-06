@@ -10,8 +10,6 @@ import EditFeedback from './pages/EditFeedback';
 function App() {
   const { user, authIsReady } = useUserContext();
 
-  console.log(user);
-
   if (!authIsReady) return null;
 
   return (

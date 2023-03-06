@@ -7,6 +7,7 @@ const RepliesList = ({
   newReply,
   setNewReply,
   handleSubmit,
+  cancelReplyToggle,
 }) => {
   return (
     <div className="py-4">
@@ -49,10 +50,13 @@ const RepliesList = ({
             value={newReply}
             onChange={(e) => setNewReply(e.target.value)}
             className="block rounded-md bg-gray-200 p-2 outline-none focus:ring-2 focus:ring-offset-1 focus:ring-colorPurple h-14 overflow-hidden flex-1 text-sm"
-            placeholder={`replying to @${reply.replyingTo}`}
+            placeholder={`replying to @${reply.user.username}`}
           />
-          <div className="flex justify-between md:flex-col">
-            <button className="btn-primary" type="submit">
+          <div className="flex gap-x-2 md:gap-y-4 md:flex-col">
+            <button className="btn-accent flex-1" onClick={cancelReplyToggle}>
+              Cancel
+            </button>
+            <button className="btn-primary flex-1" type="submit">
               Post Reply
             </button>
           </div>

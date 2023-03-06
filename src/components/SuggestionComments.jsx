@@ -16,6 +16,8 @@ const SuggestionComments = ({ suggestion, comments }) => {
   const handleSubmit = async (e, commentData) => {
     e.preventDefault();
 
+    console.log(commentData);
+
     // create new reply
     const replyToAdd = {
       content: newReply,
