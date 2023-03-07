@@ -73,8 +73,6 @@ const useFirestore = (collection) => {
         dispatch({ type: 'ERROR', payload: error.message });
       }
     }
-
-    console.log(response);
   };
 
   const updateDocument = async (docId, updates) => {

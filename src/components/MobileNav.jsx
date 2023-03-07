@@ -7,7 +7,7 @@ const MobileNav = ({ showMobileNav, categoryFilter, changeCategoryFilter }) => {
   return createPortal(
     <>
       {showMobileNav && (
-        <div className="h-screen w-screen bg-black/80 fixed left-0 right-0 bottom-0 top-[83px]" />
+        <div className="h-screen w-screen bg-black/80 fixed left-0 right-0 bottom-0 top-[83px] md:hidden" />
       )}
       <div
         className={`fixed flex flex-col gap-y-6 w-[50vw] max-w-[250px] md:hidden h-screen right-0 top-[83px] bg-whiteSecondary p-2 sm:p-8 transform transition-all duration-75 ease-linear ${

@@ -30,7 +30,8 @@ const Logout = ({ showMobile }) => {
         </div>
       </div>
       <button
-        className="hidden md:inline-block btn-secondary"
+        className={`${showMobile ? 'block' : 'hidden md:block'} btn-secondary`}
+        // className="hidden md:inline-block btn-secondary"
         onClick={logoutUser}
       >
         Logout

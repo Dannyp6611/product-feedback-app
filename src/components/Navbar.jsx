@@ -3,7 +3,12 @@ import React from 'react';
 import { BiMenuAltRight } from 'react-icons/bi';
 import { AiOutlineClose } from 'react-icons/ai';
 
-const Navbar = ({ textCenter, showMobileNav, handleShowMobileNav }) => {
+const Navbar = ({
+  textCenter,
+  showMobileNav,
+  handleShowMobileNav,
+  classes,
+}) => {
   return (
     <nav
       className={`bg-header-pattern-mobile md:bg-header-pattern-tablet lg:bg-header-pattern-desktop bg-cover text-white flex md:items-end ${
@@ -15,7 +20,7 @@ const Navbar = ({ textCenter, showMobileNav, handleShowMobileNav }) => {
         <p className="text-lg">Product Feedback</p>
       </header>
       {/* Mobile Menu Button */}
-      <button onClick={handleShowMobileNav} className="md:hidden">
+      <button onClick={handleShowMobileNav} className={classes}>
         {!showMobileNav && <BiMenuAltRight size={30} />}
         {showMobileNav && <AiOutlineClose size={30} />}
       </button>

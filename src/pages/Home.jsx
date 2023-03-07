@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 
+// components
 import { Navbar, CategoriesList, Logout, SortBar } from '../components';
 import MobileNav from '../components/MobileNav';
 import SuggestionsResults from '../components/SuggestionsResults';
+
+// hooks
 import useCollection from '../hooks/useCollection';
 
 const Home = () => {
@@ -13,6 +16,12 @@ const Home = () => {
       : 'most upvotes'
   );
   const [showMobileNav, setShowMobileNav] = useState(false);
+
+  if (showMobileNav) {
+    document.body.style.overflowY = 'hidden';
+  } else {
+    document.body.style.overflowY = 'auto';
+  }
 
   const { documents, error } = useCollection('suggestions', null, [
     'createdAt',
@@ -81,6 +90,7 @@ const Home = () => {
         <Navbar
           showMobileNav={showMobileNav}
           handleShowMobileNav={handleShowMobileNav}
+          classes="md:hidden"
         />
         <CategoriesList
           categoryFilter={categoryFilter}
