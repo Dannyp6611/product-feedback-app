@@ -44,7 +44,6 @@ const useRegister = () => {
     } catch (error) {
       setIsLoading(false);
       setError(error.message);
-      console.log(error.message);
     }
   };
 

@@ -94,7 +94,7 @@ const SuggestionItem = ({
         />
         <span className="">{upvotes.count}</span>
       </button>
-      <p className=" absolute bottom-6 right-6 text-sm md:text-base flex gap-x-2 items-center">
+      <p className=" absolute bottom-6 md:bottom-16 right-6 text-sm md:text-base flex gap-x-2 items-center">
         <BsChatFill className="text-gray-300" />
         <span className="text-grayPrimary font-bold">{comments?.length}</span>
       </p>

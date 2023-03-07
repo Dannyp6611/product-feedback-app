@@ -28,11 +28,15 @@ const EditFeedback = () => {
   const [category, setCategory] = useState('');
   const [feedbackDetail, setFeedbackDetail] = useState('');
 
+  const resetFormFields = () => {
+    setFeedbackTitle(document.title);
+    setCategory(document.category);
+    setFeedbackDetail(document.detail);
+  };
+
   useEffect(() => {
     if (document) {
-      setFeedbackTitle(document.title);
-      setCategory(document.category);
-      setFeedbackDetail(document.detail);
+      resetFormFields();
     }
   }, [document]);
 
@@ -63,7 +67,6 @@ const EditFeedback = () => {
   const handleDelete = async () => {
     await deleteDocument(suggestionID);
     if (!response.error) {
-      console.log('document deleted');
       navigate('/');
     }
   };

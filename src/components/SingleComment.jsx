@@ -3,17 +3,18 @@ import RepliesList from './RepliesList';
 
 const SingleComment = ({
   content,
-  reply = false,
   handleSubmit,
   comment,
   newReply,
   setNewReply,
   suggestionComments,
+  toggling,
+  setToggling,
 }) => {
-  const [toggling, setToggling] = useState({
-    commentID: null,
-    isToggling: false,
-  });
+  // const [toggling, setToggling] = useState({
+  //   commentID: null,
+  //   isToggling: false,
+  // });
 
   let replies = [];
 

@@ -29,7 +29,6 @@ const useLogin = () => {
     } catch (error) {
       setIsLoading(false);
       setError(error.message);
-      console.log(error.message);
     }
   };
 

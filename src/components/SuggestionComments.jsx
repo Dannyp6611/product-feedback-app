@@ -8,6 +8,10 @@ import { v4 as uuidv4 } from 'uuid';
 
 const SuggestionComments = ({ suggestion, comments }) => {
   const { user } = useUserContext();
+  const [toggling, setToggling] = useState({
+    commentID: null,
+    isToggling: false,
+  });
 
   const { updateDocument, response } = useFirestore('suggestions');
 
@@ -15,8 +19,6 @@ const SuggestionComments = ({ suggestion, comments }) => {
 
   const handleSubmit = async (e, commentData) => {
     e.preventDefault();
-
-    console.log(commentData);
 
     // create new reply
     const replyToAdd = {
@@ -29,9 +31,21 @@ const SuggestionComments = ({ suggestion, comments }) => {
       },
     };
 
+    const cancelReplyToggle = () => {
+      setNewReply('');
+      setToggling({
+        commentID: null,
+        isToggling: false,
+      });
+    };
+
+    // add comments
     await updateDocument(suggestion.id, {
       comments: suggestion.comments.map((comment) => {
-        if (comment.id === commentData.id) {
+        if (
+          comment.id === commentData.id ||
+          comment.replies?.find((reply) => reply.id === commentData.id)
+        ) {
           return {
             ...comment,
             replies: comment.replies
@@ -43,8 +57,22 @@ const SuggestionComments = ({ suggestion, comments }) => {
       }),
     });
 
+    // add replies
+    // await updateDocument(suggestion.id, {
+    //   comments: suggestion.comments.map((comment) => {
+    //     if (comment.replies?.find((reply) => reply.id === commentData.id)) {
+    //       return {
+    //         ...comment,
+    //         replies: [...comment.replies, replyToAdd],
+    //       };
+    //     } else {
+    //       return comment;
+    //     }
+    //   }),
+    // });
+
     if (!response.error) {
-      setNewReply('');
+      cancelReplyToggle();
     }
   };
 
@@ -65,6 +93,8 @@ const SuggestionComments = ({ suggestion, comments }) => {
               newReply={newReply}
               setNewReply={setNewReply}
               suggestionComments={suggestion?.comments}
+              toggling={toggling}
+              setToggling={setToggling}
             />
           </div>
         ))}
