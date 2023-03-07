@@ -10,6 +10,8 @@ import { useUserContext } from '../context/useUserContext';
 
 import { uppercaseCategory } from '../helpers';
 
+import { calculateTotalComments } from '../helpers';
+
 const SuggestionItem = ({
   category,
   detail,
@@ -96,7 +98,9 @@ const SuggestionItem = ({
       </button>
       <p className=" absolute bottom-6 md:bottom-16 right-6 text-sm md:text-base flex gap-x-2 items-center">
         <BsChatFill className="text-gray-300" />
-        <span className="text-grayPrimary font-bold">{comments?.length}</span>
+        <span className="text-grayPrimary font-bold">
+          {calculateTotalComments(comments)}
+        </span>
       </p>
     </div>
   );

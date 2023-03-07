@@ -25,12 +25,16 @@ const Logout = ({ showMobile }) => {
           />
         </div>
         <div className="">
-          <p className="font-bold text-lg">{user.displayName}</p>
+          <p className="font-bold text-lg text-colorPurple">
+            @{user.displayName}
+          </p>
           <p className="text-gray-600 text-base">{user.email}</p>
         </div>
       </div>
       <button
-        className={`${showMobile ? 'block' : 'hidden md:block'} btn-secondary`}
+        className={`${
+          showMobile ? 'block' : 'hidden md:block'
+        } mt-2 btn-secondary`}
         // className="hidden md:inline-block btn-secondary"
         onClick={logoutUser}
       >

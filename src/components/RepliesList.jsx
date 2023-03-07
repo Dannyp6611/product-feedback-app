@@ -13,7 +13,7 @@ const RepliesList = ({
     <div className="py-4">
       <button
         onClick={() => handleReplyToggle(reply.id)}
-        className="text-colorBluePrimary hover:underline underline-offset-1 font-bold absolute right-0 text-sm"
+        className="text-colorBluePrimary hover:underline underline-offset-1 font-medium absolute right-0 text-sm"
       >
         Reply
       </button>
@@ -30,7 +30,7 @@ const RepliesList = ({
           {reply.user.username}
         </h4>
       </div>
-      <div>
+      <div className="ml-12">
         <p className="text-gray-600">
           {' '}
           <span className="font-bold text-colorPurple">

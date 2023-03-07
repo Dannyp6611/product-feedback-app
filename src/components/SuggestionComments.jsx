@@ -4,6 +4,8 @@ import { useUserContext } from '../context/useUserContext';
 import useFirestore from '../hooks/useFirestore';
 import SingleComment from './SingleComment';
 
+import { calculateTotalComments } from '../helpers';
+
 import { v4 as uuidv4 } from 'uuid';
 
 const SuggestionComments = ({ suggestion, comments }) => {
@@ -57,20 +59,6 @@ const SuggestionComments = ({ suggestion, comments }) => {
       }),
     });
 
-    // add replies
-    // await updateDocument(suggestion.id, {
-    //   comments: suggestion.comments.map((comment) => {
-    //     if (comment.replies?.find((reply) => reply.id === commentData.id)) {
-    //       return {
-    //         ...comment,
-    //         replies: [...comment.replies, replyToAdd],
-    //       };
-    //     } else {
-    //       return comment;
-    //     }
-    //   }),
-    // });
-
     if (!response.error) {
       cancelReplyToggle();
     }
@@ -80,7 +68,7 @@ const SuggestionComments = ({ suggestion, comments }) => {
     <div className="bg-white rounded-md p-6">
       {/* comments title */}
       <h2 className="text-2xl font-bold text-grayPrimary mb-4">
-        {comments.length} comments
+        {calculateTotalComments(comments)} comments
       </h2>
       {/* comments */}
       <div className="flex flex-col gap-y-4">

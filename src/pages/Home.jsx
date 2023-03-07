@@ -47,7 +47,7 @@ const Home = () => {
       case 'enhancement':
       case 'feature':
       case 'bug':
-        return document.category === categoryFilter;
+        return document.category.label === categoryFilter;
       default:
         return true;
     }

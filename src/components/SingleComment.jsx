@@ -41,11 +41,11 @@ const SingleComment = ({
       <div key={content.id} className={`md:flex gap-4 relative mb-6`}>
         <button
           onClick={() => handleReplyToggle(content.id)}
-          className="text-colorBluePrimary hover:underline underline-offset-1 font-bold absolute right-0 text-sm"
+          className="text-colorBluePrimary hover:underline underline-offset-1 font-medium absolute right-0 text-sm"
         >
           Reply
         </button>
-        <div className="flex items-center">
+        <div className="flex items-center mb-2 md:mb-0">
           <div className="w-[40px] h-[40px] mr-[4px]">
             <img
               src={content.user.image}
