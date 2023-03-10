@@ -49,7 +49,7 @@ const SingleComment = ({
               src={content.user.image}
               width="40"
               height="40"
-              className="object-cover rounded-full"
+              className="object-cover w-[40px] h-[40px] rounded-full"
             />
           </div>
           <h4 className="text-sm text-grayPrimary font-bold md:hidden">
@@ -68,7 +68,7 @@ const SingleComment = ({
         replies.length > 0 &&
         replies.map((reply) => (
           <div
-            className="relative ml-8 pl-6 border-l flex flex-col"
+            className="relative ml-2 md:ml-8 pl-6 border-l flex flex-col"
             key={reply.id}
           >
             <RepliesList

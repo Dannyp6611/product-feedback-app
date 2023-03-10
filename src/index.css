@@ -7,7 +7,7 @@ body {
 }
 
 .btn-primary {
-  @apply font-bold text-white bg-colorPurple hover:opacity-60 transition-all rounded-lg px-2 py-2 md:py-2 md:px-4 text-sm md:text-base;
+  @apply font-bold text-white bg-colorPurple hover:opacity-60 transition-all rounded-lg px-2 py-2 md:py-2 md:px-4 text-sm md:text-base shadow-md;
 }
 
 .btn-secondary {

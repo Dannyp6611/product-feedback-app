@@ -32,7 +32,7 @@ const RepliesList = ({
         </h4>
       </div>
       <div className="ml-12">
-        <p className="text-gray-600">
+        <p className="text-gray-600 text-sm md:text-base">
           {' '}
           <span className="font-bold text-colorPurple">
             @{reply.replyingTo}
@@ -54,7 +54,7 @@ const RepliesList = ({
             placeholder={`replying to @${reply.user.username}`}
           />
           {replyError && (
-            <small className="w-full sm:w-[60%] error absolute bottom-12 sm:left-0 sm:right-0 sm:mx-auto md:ml-12 md:bottom-5">
+            <small className="w-full sm:w-[60%] error absolute bottom-12 left-0 right-0 sm:mx-auto md:ml-12 md:bottom-5">
               {replyError}
             </small>
           )}

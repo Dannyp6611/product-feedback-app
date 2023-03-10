@@ -1,16 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import useFirestore from '../hooks/useFirestore';
 import { useUserContext } from '../context/useUserContext';
 import { v4 as uuidv4 } from 'uuid';
 
+const MAX_CHARACTERS = 250;
+
 const CommentForm = ({ suggestion }) => {
+  const { user } = useUserContext();
+  const { updateDocument, response } = useFirestore('suggestions');
+
   const [newComment, setNewComment] = useState('');
   const [commentError, setCommentError] = useState(null);
 
-  const { updateDocument, response } = useFirestore('suggestions');
+  const [currentCharacters, setCurrentCharacters] = useState(MAX_CHARACTERS);
 
-  const { user } = useUserContext();
+  const handleCharactersLeft = (e) => {
+    const { key: keyPressed } = e;
+
+    if (keyPressed === 'Backspace' && currentCharacters < MAX_CHARACTERS) {
+      setCurrentCharacters((prevCharacters) => prevCharacters + 1);
+    } else if (keyPressed !== 'Backspace') {
+      setCurrentCharacters((prevCharacters) => prevCharacters - 1);
+    }
+  };
 
   const handleChange = (e) => {
     setNewComment(e.target.value);
@@ -20,7 +33,7 @@ const CommentForm = ({ suggestion }) => {
     e.preventDefault();
     setCommentError(null);
 
-    if (!newComment) {
+    if (!newComment.trim('')) {
       setCommentError('Comment form cannot be empty');
       return;
     }
@@ -51,6 +64,7 @@ const CommentForm = ({ suggestion }) => {
           <textarea
             value={newComment}
             onChange={handleChange}
+            onKeyDown={handleCharactersLeft}
             className="text-area h-32"
             placeholder="Type your comment here..."
           />
@@ -62,8 +76,19 @@ const CommentForm = ({ suggestion }) => {
         </div>
 
         <div className="flex items-center justify-between my-4">
-          <p>250 characters left</p>
-          <button className="btn-primary">Post Comment</button>
+          <p
+            className={`text-sm font-light capitalize ${
+              currentCharacters < 0 ? 'text-red-500' : 'text-gray-500'
+            }`}
+          >
+            {currentCharacters} characters left
+          </p>
+          <button
+            disabled={currentCharacters < 0 || newComment === ''}
+            className="btn-primary disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            Post Comment
+          </button>
         </div>
       </form>
     </div>
