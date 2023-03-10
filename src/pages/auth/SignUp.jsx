@@ -105,7 +105,7 @@ const SignUp = () => {
 
           <button
             type="submit"
-            className="btn-primary w-auto disabled:bg-opacity-40"
+            className="btn-primary w-auto disabled:bg-opacity-40 disabled:cursor-not-allowed"
             disabled={isLoading || !buttonIsValid}
           >
             {isLoading ? 'Registering...' : 'Register'}

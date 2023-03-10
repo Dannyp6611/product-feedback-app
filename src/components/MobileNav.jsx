@@ -3,10 +3,15 @@ import { createPortal } from 'react-dom';
 
 import { CategoriesList, Logout } from '../components';
 
-const MobileNav = ({ showMobileNav, categoryFilter, changeCategoryFilter }) => {
+const MobileNav = ({
+  showMobileNav,
+  categoryFilter,
+  changeCategoryFilter,
+  isMobile,
+}) => {
   return createPortal(
     <>
-      {showMobileNav && (
+      {showMobileNav && isMobile && (
         <div className="h-screen w-screen bg-black/80 fixed left-0 right-0 bottom-0 top-[83px] md:hidden" />
       )}
       <div

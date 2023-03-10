@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 // helpers
 import { calculateTotalComments } from '../helpers';
@@ -19,6 +19,29 @@ const Home = () => {
       : 'most upvotes'
   );
   const [showMobileNav, setShowMobileNav] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleWindowResize);
+
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (windowWidth <= 768) {
+      setIsMobile(true);
+    } else {
+      setIsMobile(false);
+    }
+  }, [windowWidth]);
 
   if (showMobileNav) {
     document.body.style.overflowY = 'hidden';
@@ -91,6 +114,7 @@ const Home = () => {
       <MobileNav
         showMobileNav={showMobileNav}
         categoryFilter={categoryFilter}
+        isMobile={isMobile}
         changeCategoryFilter={changeCategoryFilter}
       />
       <div className="md:w-full md:flex md:flex-row xl:flex-col gap-x-4 gap-y-6 md:h-[160px] xl:h-[50vh] xl:min-h-[500px] xl:w-[260px]">

@@ -21,14 +21,15 @@ const AddFeedback = () => {
   const navigate = useNavigate();
   const { user } = useUserContext();
 
+  const { addDocument, response } = useFirestore('suggestions');
+
   const [feedbackTitle, setFeedbackTitle] = useState('');
   const [category, setCategory] = useState({
     value: CATEGORIES[0],
     label: CATEGORIES[0],
   });
   const [feedbackDetail, setFeedbackDetail] = useState('');
-
-  const { addDocument, response } = useFirestore('suggestions');
+  const [formError, setFormError] = useState(null);
 
   const categoryOptions = CATEGORIES.map((category) => {
     return {
@@ -42,6 +43,24 @@ const AddFeedback = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    setFormError(null);
+
+    if (!feedbackTitle.trim('')) {
+      setFormError({
+        field: 'feedbackTitle',
+        message: 'Please enter a title for your feedback',
+      });
+      return;
+    }
+
+    if (!feedbackDetail.trim('')) {
+      setFormError({
+        field: 'feedbackDetail',
+        message: 'Please enter some details for your feedback',
+      });
+      return;
+    }
 
     const feedbackData = {
       title: feedbackTitle,
@@ -84,8 +103,11 @@ const AddFeedback = () => {
               onInput={(e) => setFeedbackTitle(e.target.value)}
               id="title"
               type="text"
-              className="block w-full rounded-md bg-gray-200 p-2 outline-none focus:ring-2 focus:ring-offset-1 focus:ring-colorPurple"
+              className="block w-full rounded-md bg-gray-200 p-2 outline-none focus:ring-2 focus:ring-offset-1 focus:ring-colorPurple mb-2"
             />
+            {formError?.field === 'feedbackTitle' && (
+              <small className="error">{formError.message}</small>
+            )}
           </div>
 
           <div className="mb-6">
@@ -115,8 +137,11 @@ const AddFeedback = () => {
             <textarea
               value={feedbackDetail}
               onInput={(e) => setFeedbackDetail(e.target.value)}
-              className="block w-full rounded-md bg-gray-200 p-2 outline-none focus:ring-2 focus:ring-offset-1 focus:ring-colorPurple"
+              className="text-area h-32 overflow-hidden mb-2"
             />
+            {formError?.field === 'feedbackDetail' && (
+              <small className="error">{formError.message}</small>
+            )}
           </div>
 
           <div className="flex flex-col-reverse md:flex-row gap-4">
@@ -129,7 +154,7 @@ const AddFeedback = () => {
             <button
               className="btn-primary disabled:opacity-70 disabled:cursor-not-allowed"
               type="submit"
-              disabled={!buttonIsValid}
+              // disabled={!buttonIsValid}
             >
               Add Feedback
             </button>
