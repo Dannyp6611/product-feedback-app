@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 
+// helpers
+import { calculateTotalComments } from '../helpers';
+
 // components
 import { Navbar, CategoriesList, Logout, SortBar } from '../components';
 import MobileNav from '../components/MobileNav';
@@ -65,11 +68,15 @@ const Home = () => {
       );
     } else if (sortFilter === 'most comments') {
       suggestions = suggestions.sort(
-        (a, b) => b.comments.length - a.comments.length
+        (a, b) =>
+          calculateTotalComments(b.comments) -
+          calculateTotalComments(a.comments)
       );
     } else if (sortFilter === 'least comments') {
       suggestions = suggestions.sort(
-        (a, b) => a.comments.length - b.comments.length
+        (a, b) =>
+          calculateTotalComments(a.comments) -
+          calculateTotalComments(b.comments)
       );
     }
   }

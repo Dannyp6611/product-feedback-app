@@ -60,7 +60,7 @@ const AddFeedback = () => {
 
   return (
     <>
-      <div className="w-[80vw] max-w-md mx-auto mt-8">
+      <div className="w-[80vw] max-w-md mx-auto mt-8 pb-4">
         <BackButton />
         <form
           className="bg-white relative rounded-lg p-6 w-full mt-8"

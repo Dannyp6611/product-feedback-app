@@ -12,7 +12,7 @@ const SuggestionsResults = ({ suggestions, error }) => {
         <div className="h-72 flex items-center justify-center">{error}</div>
       )}
       {suggestions && suggestions.length > 0 ? (
-        <div className="w-[90vw] mx-auto md:w-full md:mx-0 flex flex-col gap-y-4">
+        <div className="w-[90vw] mx-auto md:w-full md:mx-0 flex flex-col gap-y-4 p-4">
           {suggestions.map((suggestion) => (
             <SuggestionItem key={suggestion.id} {...suggestion} clickable />
           ))}

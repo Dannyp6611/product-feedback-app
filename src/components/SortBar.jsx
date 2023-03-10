@@ -55,7 +55,7 @@ const SortBar = ({ classes, suggestions, changeSortFilter, sortedFilter }) => {
           onClick={showFilterDropdown}
         >
           <span className="text-white">Sort By : </span>
-          <span className="flex items-center gap-x-1 font-bold">
+          <span className="flex items-center gap-x-1 font-bold capitalize">
             {sortFilter.selectedFilter}
             <MdKeyboardArrowDown
               className={`${sortFilter.showDropdown && 'transform rotate-180'}`}
@@ -69,7 +69,7 @@ const SortBar = ({ classes, suggestions, changeSortFilter, sortedFilter }) => {
                 <li
                   key={`${filter}-${idx}`}
                   onClick={() => handleFilterClick(filter)}
-                  className={`p-4 flex items-center justify-between cursor-pointer border-b border-gray-200 ${
+                  className={`p-4 flex items-center justify-between cursor-pointer border-b border-gray-200 capitalize ${
                     sortFilter.selectedFilter === filter
                       ? 'text-colorPurple'
                       : 'text-gray-500'

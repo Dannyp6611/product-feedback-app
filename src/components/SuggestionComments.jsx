@@ -75,12 +75,12 @@ const SuggestionComments = ({ suggestion, comments }) => {
     <div className="bg-white rounded-md p-6">
       {/* comments title */}
       <h2 className="text-2xl font-bold text-grayPrimary mb-4">
-        {calculateTotalComments(comments)} comments
+        {calculateTotalComments(comments)} Comments
       </h2>
       {/* comments */}
       <div className="flex flex-col gap-y-4">
         {comments.map((comment) => (
-          <div key={comment.id} className="border-b border-gray-200 py-3">
+          <div key={comment.id} className="py-3">
             <SingleComment
               content={comment}
               handleSubmit={handleSubmit}

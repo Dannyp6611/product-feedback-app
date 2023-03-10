@@ -16,7 +16,7 @@ const Logout = ({ showMobile }) => {
       }`}
     >
       <div className="flex gap-x-2">
-        <div className="w-[40px] h-[40px] rounded-full">
+        <div className="w-[40px] h-[40px] rounded-full flex-shrink-0">
           <img
             src={user.photoURL}
             width="40"
@@ -25,10 +25,10 @@ const Logout = ({ showMobile }) => {
           />
         </div>
         <div className="">
-          <p className="font-bold text-lg text-colorPurple">
+          <p className="font-bold text-xs md:text-sm text-colorPurple">
             @{user.displayName}
           </p>
-          <p className="text-gray-600 text-base">{user.email}</p>
+          <p className="text-gray-600 text-sm md:text-base">{user.email}</p>
         </div>
       </div>
       <button

@@ -87,16 +87,16 @@ const SuggestionItem = ({
           hasUserUpvoted
             ? 'bg-colorBluePrimary text-white'
             : 'bg-whiteSecondary text-grayPrimary'
-        } py-1 px-2 md:px-4 rounded-md font-bold flex md:flex-col items-center gap-x-2 md:items-center`}
+        } group hover:bg-colorBluePrimary hover:text-white py-1 px-2 md:w-[50px] md:px-4 rounded-md font-bold flex md:flex-col items-center gap-x-2 md:items-center`}
       >
         <MdKeyboardArrowUp
           className={`${
             hasUserUpvoted ? 'text-white' : 'text-colorBluePrimary'
-          } font-bold text-lg`}
+          } group-hover:text-white font-bold text-lg`}
         />
         <span className="">{upvotes.count}</span>
       </button>
-      <p className=" absolute bottom-6 md:bottom-16 right-6 text-sm md:text-base flex gap-x-2 items-center">
+      <p className=" absolute bottom-6 lg:bottom-6 right-4 text-sm md:text-base flex gap-x-2 items-center">
         <BsChatFill className="text-gray-300" />
         <span className="text-grayPrimary font-bold">
           {calculateTotalComments(comments)}
