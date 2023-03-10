@@ -86,7 +86,7 @@ const Home = () => {
         categoryFilter={categoryFilter}
         changeCategoryFilter={changeCategoryFilter}
       />
-      <div className="md:w-full md:flex md:flex-row xl:flex-col gap-x-4 gap-y-6 md:h-[160px] xl:h-[70vh] xl:min-h-[500px] xl:w-[260px]">
+      <div className="md:w-full md:flex md:flex-row xl:flex-col gap-x-4 gap-y-6 md:h-[160px] xl:h-[50vh] xl:min-h-[500px] xl:w-[260px]">
         <Navbar
           showMobileNav={showMobileNav}
           handleShowMobileNav={handleShowMobileNav}

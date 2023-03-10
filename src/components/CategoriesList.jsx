@@ -14,7 +14,7 @@ const CategoriesList = ({ categoryFilter, changeCategoryFilter, classes }) => {
       <ul className="flex flex-wrap gap-4">
         {CATEGORIES.map((category) => (
           <li
-            className={`px-4 py-1  font-medium rounded-md cursor-pointer text-sm ${
+            className={`px-4 py-1 font-medium rounded-md cursor-pointer text-sm hover:bg-colorBluePrimary hover:text-white ${
               categoryFilter === category
                 ? 'bg-colorBluePrimary text-white'
                 : 'bg-whiteSecondary text-colorBluePrimary'

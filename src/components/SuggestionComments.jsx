@@ -14,6 +14,7 @@ const SuggestionComments = ({ suggestion, comments }) => {
     commentID: null,
     isToggling: false,
   });
+  const [replyError, setReplyError] = useState(null);
 
   const { updateDocument, response } = useFirestore('suggestions');
 
@@ -21,6 +22,12 @@ const SuggestionComments = ({ suggestion, comments }) => {
 
   const handleSubmit = async (e, commentData) => {
     e.preventDefault();
+    setReplyError(null);
+
+    if (!newReply.trim('')) {
+      setReplyError("Reply can't be empty");
+      return;
+    }
 
     // create new reply
     const replyToAdd = {
@@ -83,6 +90,8 @@ const SuggestionComments = ({ suggestion, comments }) => {
               suggestionComments={suggestion?.comments}
               toggling={toggling}
               setToggling={setToggling}
+              replyError={replyError}
+              setReplyError={setReplyError}
             />
           </div>
         ))}

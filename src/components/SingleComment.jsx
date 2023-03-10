@@ -10,12 +10,9 @@ const SingleComment = ({
   suggestionComments,
   toggling,
   setToggling,
+  replyError,
+  setReplyError,
 }) => {
-  // const [toggling, setToggling] = useState({
-  //   commentID: null,
-  //   isToggling: false,
-  // });
-
   let replies = [];
 
   suggestionComments.forEach((c) => {
@@ -34,6 +31,7 @@ const SingleComment = ({
       commentID: null,
       isToggling: false,
     });
+    setReplyError(null);
   };
 
   return (
@@ -82,6 +80,7 @@ const SingleComment = ({
               key={reply.id}
               toggling={toggling}
               cancelReplyToggle={cancelReplyToggle}
+              replyError={replyError}
             />
           </div>
         ))}
