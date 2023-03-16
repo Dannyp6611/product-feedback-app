@@ -2,7 +2,7 @@
 
 ## Links
 
-- [live site url]: (https://danny-product-feedback.netlify.app/)
+- [live site url](https://danny-product-feedback.netlify.app/)
 
 ## Login Credentials
 
