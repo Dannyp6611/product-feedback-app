@@ -78,8 +78,8 @@ const AddFeedback = () => {
   };
 
   return (
-    <>
-      <div className="w-[80vw] max-w-md mx-auto mt-8 pb-4">
+    <div className="grid place-items-center h-screen">
+      <div className="w-[80vw] max-w-lg mx-auto mt-8 pb-4">
         <BackButton />
         <form
           className="bg-white relative rounded-lg p-6 w-full mt-8"
@@ -161,7 +161,7 @@ const AddFeedback = () => {
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

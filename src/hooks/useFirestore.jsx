@@ -1,4 +1,4 @@
-import { useEffect, useReducer, useRef, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import { projectFirestore, timestamp } from '../firebase/config';
 
 let initialState = {
