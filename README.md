@@ -31,4 +31,4 @@ password: test12345
 
 ## What I learned
 
-This project was a good way for me to get hands on working with React & Firebase. It also allowed me to get a good grasp on working with custom hooks because as the application grew larger components became bloated and this was a good way to split up the functionality and reuse it where neccesary.
+This project was a great way for me to get hands on working with React & Firebase. It also allowed me to get a good grasp on working with custom hooks because as the application grew larger components became bloated and this was a good way to split up the functionality and reuse it where neccesary.
