@@ -38,9 +38,6 @@ const AddFeedback = () => {
     };
   });
 
-  const buttonIsValid =
-    feedbackTitle.trim() && category.value.trim() && feedbackDetail.trim();
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -151,11 +148,7 @@ const AddFeedback = () => {
             >
               Cancel
             </button>
-            <button
-              className="btn-primary disabled:opacity-70 disabled:cursor-not-allowed"
-              type="submit"
-              // disabled={!buttonIsValid}
-            >
+            <button className="btn-primary" type="submit">
               Add Feedback
             </button>
           </div>

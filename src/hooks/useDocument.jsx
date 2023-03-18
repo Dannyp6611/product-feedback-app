@@ -20,6 +20,7 @@ export const useDocument = (collection, id) => {
       },
       (error) => {
         setError('failed to get document');
+        console.error(error.message);
       }
     );
 

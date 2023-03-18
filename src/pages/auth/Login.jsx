@@ -45,7 +45,7 @@ const Login = () => {
           </label>
 
           <button type="submit" className="btn-primary w-auto">
-            Login
+            {isLoading ? 'Logging in...' : 'Login'}
           </button>
         </form>
         <p className="text-center p-4 text-base w-full block font-semibold">

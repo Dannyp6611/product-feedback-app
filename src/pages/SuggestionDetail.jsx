@@ -10,6 +10,8 @@ import BackButton from '../components/BackButton';
 
 import { useUserContext } from '../context/useUserContext';
 
+import Loader from '../components/Loader/Loader';
+
 const SuggestionDetail = () => {
   const { id } = useParams();
   const [userId, setUserId] = useState(null);
@@ -36,7 +38,7 @@ const SuggestionDetail = () => {
   if (!suggestion) {
     return (
       <div className="h-72 flex items-center justify-center container">
-        Loading...
+        <Loader />
       </div>
     );
   }
